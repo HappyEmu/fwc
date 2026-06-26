@@ -1,0 +1,68 @@
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "tailwindcss";
+
+:root {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	color-scheme: light;
+}
+
+* {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+	margin: 0;
+	background: #e9e9ea;
+	color: #111;
+}
+
+/* A4 page geometry shared by screen preview and print. */
+.sheet {
+	width: 210mm;
+	height: 297mm;
+	background: #fff;
+}
+
+@media screen {
+	.sheet {
+		margin: 8mm auto;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+	}
+}
+
+@page {
+	size: A4 portrait;
+	margin: 0;
+}
+
+@media print {
+	body {
+		background: #fff;
+	}
+
+	/* Hide on-screen toolbar/controls when printing. */
+	.no-print {
+		/* biome-ignore lint/complexity/noImportantStyles: must win over any utility display class at print time */
+		display: none !important;
+	}
+
+	.sheet {
+		margin: 0;
+		box-shadow: none;
+		page-break-after: always;
+		break-after: page;
+	}
+
+	.sheet:last-of-type {
+		page-break-after: auto;
+		break-after: auto;
+	}
+
+	/* Force browsers to actually print the thin color accents. */
+	* {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+}
